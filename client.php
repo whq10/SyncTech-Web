@@ -41,7 +41,8 @@ include('session.php');
 					<li><a href="customer.php">Customer</a></li>
 					<li><a href="client.php">Client</a></li>
 					<li><a href="email.php">Email</a></li>
-					<li><a href="report.php">Report</a></li>					
+					<li><a href="report.php">Report</a></li>	
+					<li><a href="redeem.php">Redeem</a></li>					
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

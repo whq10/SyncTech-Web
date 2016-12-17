@@ -47,6 +47,7 @@ include('session.php');
 					?>
 					<li><a href="email.php">Email</a></li>
 					<li><a href="report.php">Report</a></li>
+					<li><a href="redeem.php">Redeem</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

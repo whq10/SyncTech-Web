@@ -15,7 +15,7 @@ Email	 	 : hakkobiorichard[at]gmail.com
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Edit Customer</title>
+	<title>Edit Redeemable Item</title>
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@ Email	 	 : hakkobiorichard[at]gmail.com
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Members Information</span>
+					<span class="sr-only">Redeemable Item Details</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -54,32 +54,30 @@ Email	 	 : hakkobiorichard[at]gmail.com
 	</nav>
 	<div class="container">
 		<div class="content">
-			<h2>Customer Data &raquo; Edit Customer</h2>
+			<h2>Redeemable Item Data &raquo; Edit Redeemable Item</h2>
 			<h1 align="center">Welcome <?php echo $login_session; ?></h1> 
 			 <h2 align="right"><a href = "logout.php">Sign Out</a></h2>
 			<hr />
 			
 			<?php
 			$id = $_GET['id'];
-			$sql = mysqli_query($koneksi, "SELECT * FROM customer WHERE id='$id'");
+			$sql = mysqli_query($koneksi, "SELECT * FROM redeem WHERE RedeemId='$id'");
 			if(mysqli_num_rows($sql) == 0){
-				header("Location: customer.php");
+				header("Location: redeem.php");
 			}else{
 				$row = mysqli_fetch_assoc($sql);
 			}
 			if(isset($_POST['save'])){
 				$id		     = $_POST['id'];
-				//$name		     = $_POST['name'];
-				$postcode	 = $_POST['postcode'];
-				$birthday	 = $_POST['birthday'];
-				//$redeem		     = $_POST['redeem'];
-				$tel		 = $_POST['tel'];
-				//$points		 = $_POST['points'];
-				$status			 = $_POST['status'];
+				$redeem_name		     = $_POST['redeem_name'];
+				$redeem_cost	 = $_POST['redeem_cost'];
+				$redeem_points	 = $_POST['redeem_points'];
+				$redeem_image		 = $_POST['redeem_image'];
+
 				
-				$update = mysqli_query($koneksi, "UPDATE customer SET postcode='$postcode', birthday='$birthday', tel='$tel', status='$status' WHERE id='$id'") or die(mysqli_error());
+				$update = mysqli_query($koneksi, "UPDATE redeem SET RedeemName='$redeem_name', RedeemCost='$redeem_cost', RedeemPoints='$redeem_points', RedeemImage='$redeem_image' WHERE RedeemId='$id'") or die(mysqli_error());
 				if($update){
-					header("Location: edit_customer.php?id=".$id."&pesan=success");
+					header("Location: edit_redeem.php?id=".$id."&pesan=success");
 				}else{
 					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>';
 				}
@@ -91,29 +89,29 @@ Email	 	 : hakkobiorichard[at]gmail.com
 			?>
 			<form class="form-horizontal" action="" method="post">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Members ID</label>
+					<label class="col-sm-3 control-label">Redeemabel Item ID</label>
 					<div class="col-sm-2">
-						<input type="text" name="id" value="<?php echo $row ['id']; ?>" class="form-control" placeholder="id" required>
+						<input type="text" name="id" value="<?php echo $row ['RedeemId']; ?>" class="form-control" placeholder="id" required>
 					</div>
 				</div>
-				<!--
+				
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Name</label>
+					<label class="col-sm-3 control-label">Redeemabel Item Name</label>
 					<div class="col-sm-4">
-						<input type="text" name="name" value="<?php echo $row ['name']; ?>" class="form-control" placeholder="Name" required>
+						<input type="text" name="redeem_name" value="<?php echo $row ['RedeemName']; ?>" class="form-control" placeholder="Name" required>
 					</div>
 				</div>
-				-->
+				
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Post code</label>
+					<label class="col-sm-3 control-label">Redeemabel Item Cost</label>
 					<div class="col-sm-4">
-						<input type="text" name="postcode" value="<?php echo $row ['postcode']; ?>" class="form-control" placeholder="postcode" required>
+						<input type="text" name="redeem_cost" value="<?php echo $row ['RedeemCost']; ?>" class="form-control" placeholder="cost" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Birthday</label>
+					<label class="col-sm-3 control-label">Redeemabel Item Points</label>
 					<div class="col-sm-4">
-						<input type="text" name="birthday" value="<?php echo $row ['birthday']; ?>" class="input-group date form-control" date="" data-date-format="yyyy-mm-dd" placeholder="0000-00-00" required>
+						<input type="text" name="redeem_points" value="<?php echo $row ['RedeemPoints']; ?>" class="input-group date form-control" date="" data-date-format="yyyy-mm-dd" placeholder="0" required>
 					</div>
 				</div>
 				<!--
@@ -125,58 +123,17 @@ Email	 	 : hakkobiorichard[at]gmail.com
 				</div>
 				-->
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Phone Number</label>
+					<label class="col-sm-3 control-label">Redeemabel Item Image</label>
 					<div class="col-sm-3">
-						<input type="text" name="tel" value="<?php echo $row ['tel']; ?>" class="form-control" placeholder="telephone" required>
+						<input type="text" name="redeem_image" value="<?php echo $row ['RedeemImage']; ?>" class="form-control" placeholder="image" required>
 					</div>
 				</div>
-				<!--
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Redeem</label>
-					<div class="col-sm-2">
-						<select name="redeem" class="form-control" required>
-							<option value=""> - Redeemble Items - </option>
-							<option value="tv">TV</option>
-							<option value="iphone">IPhone</option>
-                            <option value="watch">Watch</option>
-						</select>
-					</div>
-                    <div class="col-sm-3">
-                    <b>Redeem :</b> <span class="label label-success"><?php echo $row['redeem']; ?></span>
-				    </div>
-				</div>
-				-->
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Status</label>
-					<div class="col-sm-2">
-						<select name="status" class="form-control">
-							<option value="">- Membership Status -</option>
-                            <option value="Active">Active</option>
-							<option value="Suspend">Suspend</option>
-							<option value="Expired">Expired</option>
-						</select> 
-					</div>
-                    <div class="col-sm-3">
-                    <b>Status :</b> <span class="label label-info"><?php echo $row['status']; ?></span>
-				    </div>
-                </div>
-				<!--<div class="form-group">
-					<label class="col-sm-3 control-label">Username</label>
-					<div class="col-sm-2">
-						<input type="text" name="username" value="<?php //echo $row['username']; ?>" class="form-control" placeholder="Username">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Password</label>
-					<div class="col-sm-2">
-						<input type="password" name="pass1" value="<?php //echo $row['password']; ?>" class="form-control" placeholder="Password">
-					</div>
-				</div>-->
+
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
 						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Save">
-						<a href="customer.php" class="btn btn-sm btn-danger">Close</a>
+						<a href="redeem.php" class="btn btn-sm btn-danger">Close</a>
 					</div>
 				</div>
 			</form>

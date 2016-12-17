@@ -24,7 +24,7 @@ include('session.php');
 <script type="text/javascript">
   FusionCharts.ready(function(){
     var revenueChart = new FusionCharts({
-        "type": "column2d",
+        "type": "column3d",
         "renderAt": "chartContainer",
         "width": "500",
         "height": "300",

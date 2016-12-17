@@ -63,12 +63,12 @@ Email	 	 : hakkobiorichard[at]gmail.com
 			<?php
 			if(isset($_POST['add'])){
 				$id		     = $_POST['id'];
-				$name		 = $_POST['name'];
+				//$name		 = $_POST['name'];
 				$postcode	 = $_POST['postcode'];
 				$birthday	 = $_POST['birthday'];
-				$points		 = $_POST['points'];
+				$email		 = $_POST['email'];
 				$tel		 = $_POST['tel'];
-				$redeem		 = $_POST['redeem'];
+				//$redeem		 = $_POST['redeem'];
 				$status		 = $_POST['status'];
 			
 
@@ -77,7 +77,7 @@ Email	 	 : hakkobiorichard[at]gmail.com
 				{
 					 
 					$insert = mysqli_query($koneksi, "INSERT INTO customer(id, name, postcode, birthday, points, tel, email, redeem, status)
-															VALUES('$id','$name', '$postcode', '$birthday', '$points', '$tel', 'whq10@sina.com', '$redeem', '$status')") or die(mysqli_error());
+															VALUES('$id','Ignored', '$postcode', '$birthday', '0', '$tel', '$email', 'No redeem', '$status')") or die(mysqli_error());
 				
 
 					
@@ -100,19 +100,21 @@ Email	 	 : hakkobiorichard[at]gmail.com
 
 			<form class="form-horizontal" action="" method="post">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Customer ID</label>
+					<label class="col-sm-3 control-label">Members ID</label>
 					<div class="col-sm-2">
 						<input type="text" name="id" class="form-control" placeholder="id" required>
 					</div>
 				</div>
+				<!--
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Name</label>
 					<div class="col-sm-4">
 						<input type="text" name="name" class="form-control" placeholder="Name" required>
 					</div>
 				</div>
+				-->
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Postcode</label>
+					<label class="col-sm-3 control-label">Post code</label>
 					<div class="col-sm-4">
 						<input type="text" name="postcode" class="form-control" placeholder="postcode" required>
 					</div>
@@ -123,18 +125,22 @@ Email	 	 : hakkobiorichard[at]gmail.com
 						<input type="text" name="birthday" class="input-group date form-control" date="" data-date-format="yyyy-mm-dd" placeholder="0000-00-00" required>
 					</div>
 				</div>
+				
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Points</label>
+					<label class="col-sm-3 control-label">Email Address</label>
 					<div class="col-sm-3">
-						<textarea name="points" class="form-control" placeholder="points"></textarea>
+						<textarea name="email" class="form-control" placeholder="email"></textarea>
 					</div>
 				</div>
+				
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Telephone</label>
+					<label class="col-sm-3 control-label">Phone Number</label>
 					<div class="col-sm-3">
 						<input type="text" name="tel" class="form-control" placeholder="tel" required>
 					</div>
 				</div>
+				
+				<!--
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Redeem</label>
 					<div class="col-sm-2">
@@ -147,6 +153,7 @@ Email	 	 : hakkobiorichard[at]gmail.com
 						</select>
 					</div>
 				</div>
+				-->
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Status</label>
 					<div class="col-sm-2">
